@@ -17,7 +17,14 @@ namespace BangiayCAEM.Controllers
         {
             var sessionData = HttpContext.Session.GetString("Cart");
             if (string.IsNullOrEmpty(sessionData)) return new List<CartItem>();
-            return JsonSerializer.Deserialize<List<CartItem>>(sessionData) ?? new List<CartItem>();
+            try
+            {
+                return JsonSerializer.Deserialize<List<CartItem>>(sessionData) ?? new List<CartItem>();
+            }
+            catch
+            {
+                return new List<CartItem>();
+            }
         }
 
         private void SaveCart(List<CartItem> cart)
@@ -28,7 +35,7 @@ namespace BangiayCAEM.Controllers
         public IActionResult Index()
         {
             var cart = GetCart();
-            ViewBag.Total = cart.Sum(item => item.Product.Price * item.Quantity);
+            ViewBag.Total = cart.Sum(item => item.Total);
             return View(cart);
         }
 
@@ -38,14 +45,21 @@ namespace BangiayCAEM.Controllers
             if (product != null)
             {
                 var cart = GetCart();
-                var item = cart.FirstOrDefault(c => c.Product.Id == id);
+                var item = cart.FirstOrDefault(c => c.ProductId == id);
                 if (item != null)
                 {
                     item.Quantity++;
                 }
                 else
                 {
-                    cart.Add(new CartItem { Product = product, Quantity = 1 });
+                    cart.Add(new CartItem
+                    {
+                        ProductId = product.Id,
+                        ProductName = product.Name,
+                        ImageUrl = product.ImageUrl,
+                        Price = product.Price,
+                        Quantity = 1
+                    });
                 }
                 SaveCart(cart);
             }
@@ -55,7 +69,7 @@ namespace BangiayCAEM.Controllers
         public IActionResult RemoveFromCart(int id)
         {
             var cart = GetCart();
-            cart.RemoveAll(c => c.Product.Id == id);
+            cart.RemoveAll(c => c.ProductId == id);
             SaveCart(cart);
             return RedirectToAction("Index");
         }

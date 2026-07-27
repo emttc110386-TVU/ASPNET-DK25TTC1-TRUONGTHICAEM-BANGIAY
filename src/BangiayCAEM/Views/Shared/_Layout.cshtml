@@ -3,34 +3,29 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Shop Bán Giày CAEM</title>
+    <title>@ViewData["Title"] - BangiayCAEM</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
-<body style="background-color: #faf8f5;">
-    <!-- HEADER MÀU VÀNG THỂ THAO -->
+<body class="d-flex flex-column min-vh-100 bg-light">
+    <!-- HEADER NAVBAR -->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3" style="background-color: #ffb703;">
-            <div class="container-fluid">
-                <a class="navbar-brand fw-bold text-dark fs-3 me-4" asp-area="" asp-controller="Home" asp-action="Index">
-                    👟 Bangiay<span class="text-white">CAEM</span>
-                </a>
+        <nav class="navbar navbar-expand-sm navbar-dark shadow-sm mb-3" style="background-color: #ffb703;">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-dark fs-4" asp-controller="Home" asp-action="Index">👟 BangiayCAEM</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 ms-3">
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-bold px-3" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                            <a class="nav-link text-dark fw-bold" asp-controller="Home" asp-action="Index">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-bold px-3" asp-area="" asp-controller="Cart" asp-action="Index">🛒 Giỏ hàng</a>
+                            <a class="nav-link text-dark fw-bold" asp-controller="Cart" asp-action="Index">🛒 Giỏ hàng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-bold px-3" asp-area="" asp-controller="Categories" asp-action="Index">Quản lý Danh mục</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark fw-bold px-3" asp-area="" asp-controller="Products" asp-action="Index">Quản lý Giày</a>
+                            <a class="nav-link text-dark fw-bold" asp-controller="Categories" asp-action="Index">Quản lý Danh mục</a>
                         </li>
                     </ul>
                 </div>
@@ -38,41 +33,42 @@
         </nav>
     </header>
 
-    <!-- 👉 PHẦN QUAN TRỌNG NHẤT: RENDERBODY ĐỂ NẠP NỘI DUNG TỪ INDEX.CSHTML -->
-    <div class="container">
-        <main role="main" class="pb-3">
+    <!-- CONTENT BODY -->
+    <div class="container flex-grow-1 mb-4">
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
-    <!-- FOOTER MỚI NHIỀU CỘT CHUYÊN NGHIỆP -->
-    <footer class="bg-white border-top mt-5 pt-4 pb-3">
+    <!-- FOOTER MÀU ĐEN SANG TRỌNG -->
+    <footer class="mt-auto text-white pt-5 pb-3" style="background-color: #1e2124; border-top: 4px solid #ff6b00;">
         <div class="container">
             <div class="row g-4">
-                <div class="col-md-4">
-                    <h5 class="fw-bold" style="color: #ff6b00;">👟 BangiayCAEM</h5>
-                    <p class="text-muted small">Hệ thống phân phối giày thể thao, sneaker chính hãng hàng đầu. Đem lại sự thoải mái trên từng bước chân.</p>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold text-warning mb-3">👟 BangiayCAEM</h5>
+                    <p class="text-light small" style="line-height: 1.6;">
+                        Hệ thống cung cấp các loại giày thể thao, sneaker, công sở nam nữ chính hãng hàng đầu. Đem lại phong cách và sự thoải mái trên từng bước chân.
+                    </p>
                 </div>
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-dark">Khám phá</h6>
-                    <ul class="list-unstyled small text-muted">
-                        <li class="mb-1"><a href="#" class="text-decoration-none text-muted">Trang chủ</a></li>
-                        <li class="mb-1"><a href="#" class="text-decoration-none text-muted">Mẫu giày hot</a></li>
-                        <li class="mb-1"><a href="#" class="text-decoration-none text-muted">Tin tức & Mẹo hay</a></li>
+                <div class="col-lg-4 col-md-6">
+                    <h6 class="fw-bold text-white mb-3">📌 Danh mục nhanh</h6>
+                    <ul class="list-unstyled text-secondary small">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Giày Thể Thao / Sneaker</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Giày Tây / Công Sở</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Chính sách đổi trả</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Hướng dẫn chọn size</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
-                    <h6 class="fw-bold text-dark">Hỗ trợ khách hàng</h6>
-                    <ul class="list-unstyled small text-muted">
-                        <li class="mb-1">Hotline: 1900 1234</li>
-                        <li class="mb-1">Email: emttc110386@tvu-onschool.edu.vn</li>
-                        <li class="mb-1">Địa chỉ: Trà Vinh, Việt Nam</li>
-                    </ul>
+                <div class="col-lg-4 col-md-12">
+                    <h6 class="fw-bold text-white mb-3">📞 Thông tin liên hệ</h6>
+                    <p class="text-light small mb-1">📍 <b>Địa chỉ:</b> Trà Vinh, Việt Nam</p>
+                    <p class="text-light small mb-1">📞 <b>Hotline:</b> 1900 1234</p>
+                    <p class="text-light small mb-1">✉️ <b>Email:</b> emttc110386@tvu-onschool.edu.vn</p>
                 </div>
             </div>
-            <hr>
-            <div class="text-center text-muted small">
-                &copy; 2026 BangiayCAEM - Tất cả các quyền được bảo lưu.
+            <hr class="my-4" style="border-color: #333;">
+            <div class="text-center text-secondary small">
+                © 2026 <b>BangiayCAEM</b>. Tất cả các quyền được bảo lưu.
             </div>
         </div>
     </footer>

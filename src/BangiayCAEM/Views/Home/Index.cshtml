@@ -5,37 +5,92 @@
 }
 
 <!-- HERO BANNER -->
-<div class="hero-box rounded-4 p-4 p-lg-5 mb-4 align-items-center row g-4" style="background-color: #fdf3eb;">
-    <div class="col-lg-7">
-        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold mb-2">Sải bước cùng phong cách</span>
-        <h1 class="display-5 fw-bold text-dark mb-3">Bộ sưu tập Giày <span style="color: #ff6b00;">HOT NHẤT 2026</span></h1>
-        <p class="text-secondary fs-6 mb-4">Khám phá ngay hàng trăm mẫu giày Sneaker, Chạy bộ, Công sở chính hãng với ưu đãi cực đỉnh dành riêng cho bạn.</p>
-        <a href="#shop-now" class="btn btn-lg fw-bold text-white shadow-sm px-4 py-2" style="background-color: #ff6b00; border-radius: 25px;">Khám phá ngay ➔</a>
+<div class="hero-box rounded-4 p-3 p-md-4 mb-4 align-items-center row g-3 shadow-sm" style="background: linear-gradient(135deg, #fff3e6 0%, #fde3cf 100%); border: 1px solid #f2d2b6;">
+    <div class="col-md-7 col-lg-8">
+        <span class="badge bg-warning text-dark px-3 py-1 rounded-pill fw-bold mb-2" style="font-size: 0.8rem;">🔥 Mẫu mới 2026</span>
+        <h2 class="fw-bold text-dark mb-2" style="font-size: 1.8rem;">Bộ sưu tập Giày <span style="color: #ff6b00;">HOT NHẤT</span></h2>
+        <p class="text-secondary small mb-3">Khám phá ngay các dòng Sneaker, Chạy bộ, Công sở chính hãng với ưu đãi đặc biệt.</p>
+        <a href="#shop-now" class="btn btn-sm fw-bold text-white shadow-sm px-3 py-2" style="background-color: #ff6b00; border-radius: 20px;">Khám phá ngay ➔</a>
     </div>
-    <div class="col-lg-5 text-center">
-        <img src="~/images/banner.webp" class="img-fluid rounded-4 shadow-sm" alt="Banner Giày" style="max-height: 300px; object-fit: cover;">
+    <div class="col-md-5 col-lg-4 text-center">
+        <img src="~/images/banner.webp" class="img-fluid rounded-3 shadow-sm" alt="Banner Giày" style="max-height: 170px; width: 100%; object-fit: cover;">
     </div>
 </div>
 
-<!-- CÁC LOẠI GIÀY -->
+<!-- SẢN PHẨM -->
 <div class="row g-4" id="shop-now">
     <div class="col-lg-8">
+        <!-- TIÊU ĐỀ + NÚT THÊM SẢN PHẨM MỚI -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="fw-bold m-0" style="color: #222;">Tất cả sản phẩm 👟</h4>
+            <h5 class="fw-bold m-0 text-dark">Tất cả sản phẩm 👟</h5>
+            <button class="btn btn-warning text-dark fw-bold px-3 py-2 shadow-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                ➕ Thêm sản phẩm mới
+            </button>
         </div>
 
         <div class="row row-cols-1 row-cols-md-3 g-3">
             @foreach (var item in Model)
             {
                 <div class="col">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 p-2 text-center custom-card">
-                        <img src="@item.ImageUrl" class="card-img-top rounded-3" style="height: 150px; object-fit: contain;" alt="@item.Name">
-                        <div class="card-body p-2 d-flex flex-column justify-content-between">
-                            <h6 class="fw-bold text-dark mt-1" style="font-size: 0.95rem;">@item.Name</h6>
-                            <p class="text-danger fw-bold my-1">@string.Format("{0:N0}đ", item.Price)</p>
+                    <div class="card h-100 border-0 shadow-sm rounded-4 p-3 text-center">
+
+                        <!-- NÚT SỬA VÀ XÓA HIỂN THỊ RÕ RÀNG BÊN TRÊN -->
+                        <div class="d-flex justify-content-end gap-1 mb-2">
+                            <button class="btn btn-sm btn-outline-secondary py-0 px-2 rounded-2" style="font-size: 0.8rem;" data-bs-toggle="modal" data-bs-target="#editModal-@item.Id">
+                                ✏️ Sửa
+                            </button>
+                            <a asp-controller="Products" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Bạn chắc chắn muốn xóa?')" class="btn btn-sm btn-outline-danger py-0 px-2 rounded-2" style="font-size: 0.8rem;">
+                                🗑️ Xóa
+                            </a>
+                        </div>
+
+                        <!-- HÌNH ẢNH SẢN PHẨM -->
+                        <img src="@item.ImageUrl" class="card-img-top rounded-3 mb-2" style="height: 130px; object-fit: contain;" alt="@item.Name" onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Loi+Anh';">
+
+                        <div class="card-body p-0 d-flex flex-column justify-content-between">
+                            <h6 class="fw-bold text-dark mb-1" style="font-size: 0.9rem;">@item.Name</h6>
+                            <p class="text-danger fw-bold my-1" style="font-size: 0.95rem;">@string.Format("{0:N0}đ", item.Price)</p>
                             <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id" class="btn btn-sm text-white fw-bold w-100 mt-2" style="background-color: #ff6b00; border-radius: 20px;">
                                 🛒 Thêm vào giỏ
                             </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- POPUP SỬA SẢN PHẨM -->
+                <div class="modal fade" id="editModal-@item.Id" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content rounded-4 border-0 shadow text-start">
+                            <div class="modal-header text-dark border-0 rounded-top-4" style="background-color: #ffb703;">
+                                <h5 class="modal-title fw-bold">✏️ Cập nhật thông tin giày</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form asp-controller="Products" asp-action="Edit" method="post">
+                                <input type="hidden" name="Id" value="@item.Id" />
+                                <input type="hidden" name="CategoryId" value="@item.CategoryId" />
+                                <div class="modal-body p-4">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Tên mẫu giày</label>
+                                        <input type="text" name="Name" class="form-control rounded-3" value="@item.Name" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Giá bán (VNĐ)</label>
+                                        <input type="number" name="Price" class="form-control rounded-3" value="@Convert.ToInt64(item.Price)" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Mô tả sản phẩm</label>
+                                        <input type="text" name="Description" class="form-control rounded-3" value="@item.Description" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Đường dẫn hình ảnh (URL)</label>
+                                        <input type="text" name="ImageUrl" class="form-control rounded-3" value="@item.ImageUrl" required />
+                                    </div>
+                                </div>
+                                <div class="modal-footer border-0 pt-0">
+                                    <button type="button" class="btn btn-light rounded-3" data-bs-dismiss="modal">Hủy</button>
+                                    <button type="submit" class="btn text-white fw-bold rounded-3" style="background-color: #ff6b00;">Cập nhật ngay</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -45,14 +100,14 @@
 
     <!-- SIDEBAR -->
     <div class="col-lg-4">
-        <div class="bg-white p-3 rounded-4 shadow-sm border mb-4">
+        <div class="bg-white p-3 rounded-4 shadow-sm border mb-3">
             <h6 class="fw-bold mb-3 text-dark">❤️ Mẫu giày gợi ý</h6>
             @foreach (var item in Model.Take(3))
             {
-                <div class="d-flex gap-3 align-items-center mb-3">
-                    <img src="@item.ImageUrl" class="rounded-3" style="width: 55px; height: 55px; object-fit: cover;">
+                <div class="d-flex gap-3 align-items-center mb-2 pb-2 border-bottom">
+                    <img src="@item.ImageUrl" class="rounded-3" style="width: 50px; height: 50px; object-fit: contain;" onerror="this.onerror=null; this.src='https://via.placeholder.com/50';">
                     <div>
-                        <h6 class="mb-0 fw-bold fs-7">@item.Name</h6>
+                        <h6 class="mb-0 fw-bold text-dark" style="font-size: 0.85rem;">@item.Name</h6>
                         <small class="text-danger fw-bold">@string.Format("{0:N0}đ", item.Price)</small>
                     </div>
                 </div>
@@ -60,10 +115,46 @@
         </div>
 
         <div class="bg-white p-3 rounded-4 shadow-sm border">
-            <h6 class="fw-bold text-dark mb-2">📩 Đăng ký nhận mã giảm giá</h6>
-            <p class="text-muted small">Nhận ngay Voucher 10% cho đơn hàng đầu tiên.</p>
+            <h6 class="fw-bold text-dark mb-1">📩 Đăng ký nhận ưu đãi</h6>
+            <p class="text-muted small mb-2" style="font-size: 0.8rem;">Nhận ngay Voucher 10% cho đơn hàng đầu tiên.</p>
             <input type="email" class="form-control form-control-sm mb-2 rounded-3" placeholder="Nhập email...">
             <button class="btn btn-warning w-100 text-white fw-bold btn-sm rounded-3" style="background-color: #ff6b00; border: none;">Đăng ký ngay</button>
+        </div>
+    </div>
+</div>
+
+<!-- POPUP THÊM SẢN PHẨM MỚI -->
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow">
+            <div class="modal-header text-dark border-0 rounded-top-4" style="background-color: #ffb703;">
+                <h5 class="modal-title fw-bold">➕ Thêm sản phẩm mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form asp-controller="Products" asp-action="Create" method="post">
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Tên mẫu giày</label>
+                        <input type="text" name="Name" class="form-control rounded-3" placeholder="Ví dụ: Giày Sneaker Nike Air" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Giá bán (VNĐ)</label>
+                        <input type="number" name="Price" class="form-control rounded-3" placeholder="Ví dụ: 1200000" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Mô tả sản phẩm</label>
+                        <input type="text" name="Description" class="form-control rounded-3" placeholder="Ví dụ: Giày thể thao êm ái..." />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Đường dẫn hình ảnh (URL / Thư mục)</label>
+                        <input type="text" name="ImageUrl" class="form-control rounded-3" placeholder="/images/sp1.webp" required />
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-light rounded-3" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn text-white fw-bold rounded-3" style="background-color: #ff6b00;">Lưu sản phẩm</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
