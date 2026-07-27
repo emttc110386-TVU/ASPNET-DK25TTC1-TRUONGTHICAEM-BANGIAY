@@ -76,3 +76,6 @@ INSERT INTO SizeGiay (TenSize) VALUES ('38'), ('39'), ('40'), ('41'), ('42'), ('
 INSERT INTO TaiKhoan (TenDangNhap, MatKhau, HoTen, Email, VaiTro) VALUES 
 ('admin', '123456', N'Quản Trị Viên', 'admin@bangiay.com', 'Admin'),
 ('khachhang', '123456', N'Trương Thị Cả Em', 'emttc110386@tvu-onschool.edu.vn', 'KhachHang');
+USE QL_BanGiay;
+DELETE FROM Products;
+DELETE FROM Categories;

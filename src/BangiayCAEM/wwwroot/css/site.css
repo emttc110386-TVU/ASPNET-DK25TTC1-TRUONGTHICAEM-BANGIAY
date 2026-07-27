@@ -1,149 +1,72 @@
-html {
-  font-size: 14px;
+/* Màu Header & Footer Vàng Thể Thao */
+.custom-navbar, .custom-footer {
+    background-color: #ffb703 !important; /* Vàng rực rỡ xịn xò */
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    .custom-navbar .nav-link {
+        font-size: 1.05rem;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .custom-navbar .nav-link:hover {
+            color: #ffffff !important;
+            transform: translateY(-2px);
+        }
+
+/* Lột xác Card Sản Phẩm khác biệt hoàn toàn bản cũ */
+.card {
+    border: none !important;
+    border-radius: 16px !important;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+    }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
+    /* Đổi nút 'Thêm vào giỏ' sang phong cách Đen/Vàng thể thao */
+    .btn-warning, .card button, .card .btn {
+        background-color: #1a1a1a !important;
+        color: #ffb703 !important;
+        font-weight: bold;
+        border: none;
+        border-radius: 20px;
+        padding: 8px 18px;
+        transition: all 0.2s ease;
+    }
 
+        .btn-warning:hover, .card button:hover, .card .btn:hover {
+            background-color: #ffb703 !important;
+            color: #1a1a1a !important;
+        }
+/* Tông màu nền chính siêu dịu mắt */
 body {
-  margin-bottom: 60px;
+    background-color: #faf8f5 !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Hiệu ứng chọn danh mục */
+.nav-category-item {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 100px;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
-}
-.footer-mon {
-    background: #008f55;
-    color: white;
-    padding: 40px 0 0;
-    margin-top: 50px;
-}
-
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 30px;
-}
-
-
-.footer-column h3 {
-    font-size: 18px;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-
-.footer-column p {
-    font-size: 14px;
-    line-height: 1.7;
-}
-
-
-.footer-column a {
-    display: block;
-    color: #ffffff;
-    text-decoration: none;
-    margin-bottom: 10px;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-
-    .footer-column a:hover {
-        color: #ffd700;
-        padding-left: 5px;
+    .nav-category-item:hover, .active-cat {
+        background-color: #fff5ee;
+        color: #ff6b00;
     }
 
-    .footer-column a:hover {
-        color: #ffd700;
+/* Card sản phẩm bo tròn & đổ bóng hiện đại */
+.custom-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .custom-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
     }
-
-
-
-.social a {
-    display: inline-block;
-    font-size: 25px;
-    margin-right: 15px;
-    color: white;
-    text-decoration: none;
-}
-
-
-    .social a:hover {
-        color: #ffd700;
-    }
-
-
-.footer-bottom {
-    text-align: center;
-    background: #007344;
-    margin-top: 30px;
-    padding: 15px;
-    font-size: 14px;
-}
-.footer-mon a {
-    color: white;
-    text-decoration: none;
-}
-
-    .footer-mon a:hover {
-        color: #ffd166;
-        text-decoration: underline;
-    }
-.footer-column a {
-    color: white !important;
-    text-decoration: none !important;
-}
-
-    .footer-column a:hover {
-        color: #ffd166 !important;
-    }
-.footer-column a {
-    display: block;
-    margin-bottom: 10px;
-    color: white !important;
-    text-decoration: none !important;
-    transition: 0.3s;
-}
-
-    .footer-column a:hover {
-        color: #ffd166 !important;
-        padding-left: 5px;
-    }
-.container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 30px;
-}
-.product-list {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 25px;
-}
-.footer-mon {
-    width: 100%;
-    padding: 50px 0;
-}
-
-.footer-column {
-    min-width: 220px;
-}

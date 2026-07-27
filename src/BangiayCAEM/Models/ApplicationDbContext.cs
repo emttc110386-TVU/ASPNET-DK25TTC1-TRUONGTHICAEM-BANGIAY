@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace TrasuaMON.Models
+namespace BangiayCAEM.Models
 {
     public class ApplicationDbContext : DbContext
     {

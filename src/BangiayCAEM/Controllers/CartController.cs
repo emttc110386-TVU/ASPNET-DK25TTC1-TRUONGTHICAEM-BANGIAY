@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using BangiayCAEM.Models;
 using System.Text.Json;
-using TrasuaMON.Models;
 
-namespace TrasuaMON.Controllers
+namespace BangiayCAEM.Controllers
 {
     public class CartController : Controller
     {
@@ -15,79 +15,55 @@ namespace TrasuaMON.Controllers
 
         private List<CartItem> GetCart()
         {
-            var session = HttpContext.Session.GetString("CART");
-            if (!string.IsNullOrEmpty(session))
-            {
-                return JsonSerializer.Deserialize<List<CartItem>>(session) ?? new List<CartItem>();
-            }
-            return new List<CartItem>();
+            var sessionData = HttpContext.Session.GetString("Cart");
+            if (string.IsNullOrEmpty(sessionData)) return new List<CartItem>();
+            return JsonSerializer.Deserialize<List<CartItem>>(sessionData) ?? new List<CartItem>();
         }
 
         private void SaveCart(List<CartItem> cart)
         {
-            HttpContext.Session.SetString("CART", JsonSerializer.Serialize(cart));
+            HttpContext.Session.SetString("Cart", JsonSerializer.Serialize(cart));
         }
 
         public IActionResult Index()
         {
             var cart = GetCart();
+            ViewBag.Total = cart.Sum(item => item.Product.Price * item.Quantity);
             return View(cart);
         }
 
-        public IActionResult AddToCart(int productId)
+        public IActionResult AddToCart(int id)
         {
-            var product = _context.Products.Find(productId);
+            var product = _context.Products.FirstOrDefault(p => p.Id == id);
             if (product != null)
             {
                 var cart = GetCart();
-                var item = cart.FirstOrDefault(p => p.ProductId == productId);
+                var item = cart.FirstOrDefault(c => c.Product.Id == id);
                 if (item != null)
                 {
                     item.Quantity++;
                 }
                 else
                 {
-                    cart.Add(new CartItem
-                    {
-                        ProductId = product.Id,
-                        ProductName = product.Name,
-                        Price = product.Price,
-                        ImageUrl = product.ImageUrl,
-                        Quantity = 1
-                    });
+                    cart.Add(new CartItem { Product = product, Quantity = 1 });
                 }
                 SaveCart(cart);
             }
             return RedirectToAction("Index");
         }
 
-        public IActionResult Remove(int productId)
+        public IActionResult RemoveFromCart(int id)
         {
             var cart = GetCart();
-            var item = cart.FirstOrDefault(p => p.ProductId == productId);
-            if (item != null)
-            {
-                cart.Remove(item);
-                SaveCart(cart);
-            }
+            cart.RemoveAll(c => c.Product.Id == id);
+            SaveCart(cart);
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public IActionResult Checkout(string customerName, string phone, string address)
+        public IActionResult ClearCart()
         {
-            var cart = GetCart();
-            if (!cart.Any()) return RedirectToAction("Index");
-
-            ViewBag.CustomerName = customerName;
-            ViewBag.Phone = phone;
-            ViewBag.Address = address;
-            ViewBag.OrderDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-
-            var orderCart = new List<CartItem>(cart);
-            HttpContext.Session.Remove("CART");
-
-            return View("Bill", orderCart);
+            HttpContext.Session.Remove("Cart");
+            return RedirectToAction("Index");
         }
     }
 }

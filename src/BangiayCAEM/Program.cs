@@ -1,19 +1,26 @@
 using Microsoft.EntityFrameworkCore;
-using TrasuaMON.Models;
+using BangiayCAEM.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession();
 
-// Đăng ký DbContext
+// 1. Đăng ký Database
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// 2. Đăng ký Session cho Giỏ hàng
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -25,38 +32,51 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+// Bật Session
 app.UseSession();
 
-// ==========================================
-// TỰ ĐỘNG NẠP DỮ LIỆU SẢN PHẨM KHI CHẠY WEB
-// ==========================================
+app.UseAuthorization();
+
+// 3. Tự động nạp ĐẦY ĐỦ 9 mẫu giày từ thư mục images vào CSDL
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    context.Database.EnsureCreated();
-
-    if (!context.Categories.Any())
+    var services = scope.ServiceProvider;
+    try
     {
-        context.Categories.Add(new Category { Name = "Trà Sữa MONMON", Description = "Danh mục chính" });
-        context.SaveChanges();
+        var context = services.GetRequiredService<ApplicationDbContext>();
+        context.Database.EnsureCreated();
+
+        if (!context.Categories.Any())
+        {
+            context.Categories.AddRange(
+                new Category { Name = "Giày Thể Thao / Sneaker", Description = "Phong cách trẻ trung" },
+                new Category { Name = "Giày Tây / Công Sở", Description = "Lịch lãm sang trọng" }
+            );
+            context.SaveChanges();
+        }
+
+        var catTheThao = context.Categories.First(c => c.Name.Contains("Thể Thao")).Id;
+        var catCongSo = context.Categories.First(c => c.Name.Contains("Công Sở")).Id;
+
+        if (!context.Products.Any())
+        {
+            context.Products.AddRange(
+                new Product { Name = "Giày Sneaker Nike Air", Price = 1200000, ImageUrl = "/images/nike.jfif", CategoryId = catTheThao },
+                new Product { Name = "Giày Nike Zoom Running", Price = 1850000, ImageUrl = "/images/nike (2).jfif", CategoryId = catTheThao },
+                new Product { Name = "Giày Adidas Ultraboost", Price = 1500000, ImageUrl = "/images/adidas.jfif", CategoryId = catTheThao },
+                new Product { Name = "Giày Sneaker Converse Classic", Price = 850000, ImageUrl = "/images/convers.jfif", CategoryId = catTheThao },
+                new Product { Name = "Giày Thể Thao Vans Old Skool", Price = 950000, ImageUrl = "/images/vans.jfif", CategoryId = catTheThao },
+                new Product { Name = "Giày Sneaker Đi Chơi Thời Trang", Price = 690000, ImageUrl = "/images/dichoi.jfif", CategoryId = catTheThao },
+                new Product { Name = "Giày Tây Đi Làm Da Cao Cấp", Price = 1350000, ImageUrl = "/images/dilam.jfif", CategoryId = catCongSo },
+                new Product { Name = "Giày Lười Loafer Công Sở", Price = 1100000, ImageUrl = "/images/dilam2.jfif", CategoryId = catCongSo },
+                new Product { Name = "Giày Thể Thao Nam Nữ Cổ Thấp", Price = 750000, ImageUrl = "/images/giaythethao.jfif", CategoryId = catTheThao }
+            );
+            context.SaveChanges();
+        }
     }
-
-    var categoryId = context.Categories.First().Id;
-
-    if (!context.Products.Any())
+    catch (Exception ex)
     {
-        context.Products.AddRange(
-            new Product { Name = "Trà Sữa MATCHA", Price = 45000, ImageUrl = "/images/trasua_matcha.png", Description = "cực ngon và béo ngậy", CategoryId = categoryId },
-            new Product { Name = "Trà sữa chocolate", Price = 40000, ImageUrl = "/images/chocolate.png", Description = "Vị ngon khó cưỡng", CategoryId = categoryId },
-            new Product { Name = "Trà sữa truyền thống", Price = 46000, ImageUrl = "/images/truyenthong.avif", Description = "thơm ngon", CategoryId = categoryId },
-            new Product { Name = "Full Topping", Price = 55000, ImageUrl = "/images/2.jpg", Description = "Vị ngon khó cưỡng", CategoryId = categoryId },
-            new Product { Name = "Cam Đá Xay", Price = 60000, ImageUrl = "/images/321.jpg", Description = "Uống vào là ghiền", CategoryId = categoryId },
-            new Product { Name = "Hoa Hướng Dương", Price = 60000, ImageUrl = "/images/xam.jpg", Description = "Thơm ngon béo ngậy", CategoryId = categoryId },
-            new Product { Name = "Sữa Tươi Cà Phê", Price = 45000, ImageUrl = "/images/3.jpg", Description = "Rất thơm mát", CategoryId = categoryId },
-            new Product { Name = "Sữa Tươi Trân Châu Đường", Price = 50000, ImageUrl = "/images/1.jpg", Description = "Ngọt ngào mê say", CategoryId = categoryId }
-        );
-        context.SaveChanges();
+        // Bỏ qua lỗi nếu trùng
     }
 }
 

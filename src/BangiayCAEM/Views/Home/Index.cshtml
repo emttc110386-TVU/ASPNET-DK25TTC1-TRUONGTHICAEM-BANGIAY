@@ -1,41 +1,69 @@
-﻿@model IEnumerable<TrasuaMON.Models.Product>
+﻿@model IEnumerable<BangiayCAEM.Models.Product>
 
 @{
-    ViewData["Title"] = "Trang Chủ - Trà Sữa MON";
+    ViewData["Title"] = "Trang chủ";
 }
 
-<!-- BANNER TRÀ SỮA NÉT CĂNG (ĐÃ CHỈNH ĐÚNG FILE background.png) -->
-<div class="text-center mb-5">
-    <div class="shadow-sm rounded-3 overflow-hidden border">
-        <img src="/images/background.png"
-             class="img-fluid w-100 d-block"
-             alt="Tiệm Trà Sữa MON"
-             style="max-height: 350px; object-fit: cover;" />
+<!-- HERO BANNER -->
+<div class="hero-box rounded-4 p-4 p-lg-5 mb-4 align-items-center row g-4" style="background-color: #fdf3eb;">
+    <div class="col-lg-7">
+        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold mb-2">Sải bước cùng phong cách</span>
+        <h1 class="display-5 fw-bold text-dark mb-3">Bộ sưu tập Giày <span style="color: #ff6b00;">HOT NHẤT 2026</span></h1>
+        <p class="text-secondary fs-6 mb-4">Khám phá ngay hàng trăm mẫu giày Sneaker, Chạy bộ, Công sở chính hãng với ưu đãi cực đỉnh dành riêng cho bạn.</p>
+        <a href="#shop-now" class="btn btn-lg fw-bold text-white shadow-sm px-4 py-2" style="background-color: #ff6b00; border-radius: 25px;">Khám phá ngay ➔</a>
+    </div>
+    <div class="col-lg-5 text-center">
+        <img src="~/images/banner.webp" class="img-fluid rounded-4 shadow-sm" alt="Banner Giày" style="max-height: 300px; object-fit: cover;">
     </div>
 </div>
 
-<div id="menu" class="text-center mb-4">
-    <small class="text-muted text-uppercase tracking-wide">MON Menu Style</small>
-    <h3 class="fw-bold text-uppercase mt-1">SẢN PHẨM NỔI BẬT</h3>
-    <hr class="mx-auto" style="width: 50px; height: 3px; background-color: #d4a359; opacity: 1;">
-</div>
+<!-- CÁC LOẠI GIÀY -->
+<div class="row g-4" id="shop-now">
+    <div class="col-lg-8">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="fw-bold m-0" style="color: #222;">Tất cả sản phẩm 👟</h4>
+        </div>
 
-<!-- DANH SÁCH THẺ SẢN PHẨM -->
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 mb-5">
-    @if (Model != null && Model.Any())
-    {
-        foreach (var item in Model)
-        {
-            <div class="col">
-                <div class="card h-100 border-0 shadow-sm text-center p-3">
-                    <img src="@item.ImageUrl" class="card-img-top mx-auto" style="height: 180px; object-fit: contain;" alt="@item.Name" onerror="this.src='https://via.placeholder.com/180?text=TraSua'">
-                    <div class="card-body d-flex flex-column justify-content-between p-2 mt-2">
-                        <h6 class="card-title fw-bold text-uppercase small text-secondary">@item.Name</h6>
-                        <p class="card-text text-danger fw-bold mb-2">@string.Format("{0:N0}", item.Price)đ</p>
-                        <a href="/Cart/AddToCart?productId=@item.Id" class="btn btn-sm text-white fw-bold w-100" style="background-color: #d4a359;">Thêm vào giỏ</a>
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+            @foreach (var item in Model)
+            {
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 p-2 text-center custom-card">
+                        <img src="@item.ImageUrl" class="card-img-top rounded-3" style="height: 150px; object-fit: contain;" alt="@item.Name">
+                        <div class="card-body p-2 d-flex flex-column justify-content-between">
+                            <h6 class="fw-bold text-dark mt-1" style="font-size: 0.95rem;">@item.Name</h6>
+                            <p class="text-danger fw-bold my-1">@string.Format("{0:N0}đ", item.Price)</p>
+                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id" class="btn btn-sm text-white fw-bold w-100 mt-2" style="background-color: #ff6b00; border-radius: 20px;">
+                                🛒 Thêm vào giỏ
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-    }
+            }
+        </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="col-lg-4">
+        <div class="bg-white p-3 rounded-4 shadow-sm border mb-4">
+            <h6 class="fw-bold mb-3 text-dark">❤️ Mẫu giày gợi ý</h6>
+            @foreach (var item in Model.Take(3))
+            {
+                <div class="d-flex gap-3 align-items-center mb-3">
+                    <img src="@item.ImageUrl" class="rounded-3" style="width: 55px; height: 55px; object-fit: cover;">
+                    <div>
+                        <h6 class="mb-0 fw-bold fs-7">@item.Name</h6>
+                        <small class="text-danger fw-bold">@string.Format("{0:N0}đ", item.Price)</small>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="bg-white p-3 rounded-4 shadow-sm border">
+            <h6 class="fw-bold text-dark mb-2">📩 Đăng ký nhận mã giảm giá</h6>
+            <p class="text-muted small">Nhận ngay Voucher 10% cho đơn hàng đầu tiên.</p>
+            <input type="email" class="form-control form-control-sm mb-2 rounded-3" placeholder="Nhập email...">
+            <button class="btn btn-warning w-100 text-white fw-bold btn-sm rounded-3" style="background-color: #ff6b00; border: none;">Đăng ký ngay</button>
+        </div>
+    </div>
 </div>

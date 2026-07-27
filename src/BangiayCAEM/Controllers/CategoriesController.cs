@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TrasuaMON.Models;
+using BangiayCAEM.Models;
 
-namespace TrasuaMON.Controllers
+namespace BangiayCAEM.Controllers
 {
     public class CategoriesController : Controller
     {

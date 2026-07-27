@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TrasuaMON.Models
+namespace BangiayCAEM.Models
 {
     public class Category
     {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PHU\\OneDrive\\Documents\\GitHub\\ASPNET-DK25TTC1-PHAMHOANGPHU-TRASUA\\src\\TrasuaMON\\TrasuaMON\\TrasuaMON.csproj": {}
+    "C:\\Users\\PHU\\OneDrive\\Documents\\GitHub\\ASPNET-DK25TTC1-PHAMHOANGPHU-TRASUA\\src\\BangiayCAEM\\BangiayCAEM\\BangiayCAEM.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PHU\\OneDrive\\Documents\\GitHub\\ASPNET-DK25TTC1-PHAMHOANGPHU-TRASUA\\src\\TrasuaMON\\TrasuaMON\\TrasuaMON.csproj": {
+    "C:\\Users\\PHU\\OneDrive\\Documents\\GitHub\\ASPNET-DK25TTC1-PHAMHOANGPHU-TRASUA\\src\\BangiayCAEM\\BangiayCAEM\\BangiayCAEM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PHU\\OneDrive\\Documents\\GitHub\\ASPNET-DK25TTC1-PHAMHOANGPHU-TRASUA\\src\\TrasuaMON\\TrasuaMON\\TrasuaMON.csproj",
-        "projectName": "TrasuaMON",
-        "projectPath": "C:\\Users\\PHU\\OneDrive\\Documents\\GitHub\\ASPNET-DK25TTC1-PHAMHOANGPHU-TRASUA\\src\\TrasuaMON\\TrasuaMON\\TrasuaMON.csproj",
+        "projectUniqueName": "C:\\Users\\PHU\\OneDrive\\Documents\\GitHub\\ASPNET-DK25TTC1-PHAMHOANGPHU-TRASUA\\src\\BangiayCAEM\\BangiayCAEM\\BangiayCAEM.csproj",
+        "projectName": "BangiayCAEM",
+        "projectPath": "C:\\Users\\PHU\\OneDrive\\Documents\\GitHub\\ASPNET-DK25TTC1-PHAMHOANGPHU-TRASUA\\src\\BangiayCAEM\\BangiayCAEM\\BangiayCAEM.csproj",
         "packagesPath": "C:\\Users\\PHU\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PHU\\OneDrive\\Documents\\GitHub\\ASPNET-DK25TTC1-PHAMHOANGPHU-TRASUA\\src\\TrasuaMON\\TrasuaMON\\obj\\",
+        "outputPath": "C:\\Users\\PHU\\OneDrive\\Documents\\GitHub\\ASPNET-DK25TTC1-PHAMHOANGPHU-TRASUA\\src\\BangiayCAEM\\BangiayCAEM\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

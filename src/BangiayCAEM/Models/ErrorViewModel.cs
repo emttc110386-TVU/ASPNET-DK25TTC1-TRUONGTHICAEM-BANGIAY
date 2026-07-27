@@ -1,4 +1,4 @@
-namespace TrasuaMON.Models
+namespace BangiayCAEM.Models
 {
     public class ErrorViewModel
     {

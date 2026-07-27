@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TrasuaMON.Models;
+using BangiayCAEM.Models;
 
-namespace TrasuaMON.Controllers
+namespace BangiayCAEM.Controllers
 {
     public class HomeController : Controller
     {
