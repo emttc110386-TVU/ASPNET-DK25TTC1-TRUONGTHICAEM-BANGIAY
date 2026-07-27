@@ -1,0 +1,149 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+.footer-mon {
+    background: #008f55;
+    color: white;
+    padding: 40px 0 0;
+    margin-top: 50px;
+}
+
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 30px;
+}
+
+
+.footer-column h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+
+.footer-column p {
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+.footer-column a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+
+    .footer-column a:hover {
+        color: #ffd700;
+        padding-left: 5px;
+    }
+
+    .footer-column a:hover {
+        color: #ffd700;
+    }
+
+
+
+.social a {
+    display: inline-block;
+    font-size: 25px;
+    margin-right: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+
+    .social a:hover {
+        color: #ffd700;
+    }
+
+
+.footer-bottom {
+    text-align: center;
+    background: #007344;
+    margin-top: 30px;
+    padding: 15px;
+    font-size: 14px;
+}
+.footer-mon a {
+    color: white;
+    text-decoration: none;
+}
+
+    .footer-mon a:hover {
+        color: #ffd166;
+        text-decoration: underline;
+    }
+.footer-column a {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+    .footer-column a:hover {
+        color: #ffd166 !important;
+    }
+.footer-column a {
+    display: block;
+    margin-bottom: 10px;
+    color: white !important;
+    text-decoration: none !important;
+    transition: 0.3s;
+}
+
+    .footer-column a:hover {
+        color: #ffd166 !important;
+        padding-left: 5px;
+    }
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 25px;
+}
+.footer-mon {
+    width: 100%;
+    padding: 50px 0;
+}
+
+.footer-column {
+    min-width: 220px;
+}

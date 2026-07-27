@@ -1,0 +1,11 @@
+.vs/
+bin/
+obj/
+compressed/
+*.user
+*.cache
+*.cache.json
+*.dll
+*.exe
+*.pdb
+apphost.exe

@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Trà Sữa MON</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+    <!-- THANH MENU MÀU XANH NỔI BẬT TÁCH BIỆT BANNER -->
+    <header class="mb-4">
+        <nav class="navbar navbar-expand-sm navbar-dark shadow-sm py-2" style="background-color: #008744;">
+            <div class="container">
+                <a class="navbar-brand fw-bold fs-4 text-white" asp-area="" asp-controller="Home" asp-action="Index">TrasuaMON</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-semibold" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white fw-semibold" asp-controller="Cart" asp-action="Index">🛒 Giỏ hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50" asp-controller="Categories" asp-action="Index">Quản lý Danh mục</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50" asp-controller="Products" asp-action="Index">Quản lý Trà sữa</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container flex-grow-1">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- FOOTER MÀU XANH CHUẨN -->
+    <footer class="footer text-white py-4 mt-5" style="background-color: #008744;">
+        <div class="container">
+            <div class="row pt-2">
+                <div class="col-md-3 mb-3">
+                    <h6 class="fw-bold text-uppercase mb-3">THÔNG TIN LIÊN HỆ</h6>
+                    <p class="small mb-2">Trà Sữa MON - Hương vị thơm ngon mỗi ngày.</p>
+                    <p class="small mb-1">📍 Địa chỉ: 123 Đường ABC, TP.HCM</p>
+                    <p class="small mb-1">📞 Hotline: 0909 999 999</p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h6 class="fw-bold text-uppercase mb-3">DANH MỤC MENU</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-1"><a href="/" class="text-white text-decoration-none">Trang chủ</a></li>
+                        <li class="mb-1"><a href="/Cart" class="text-white text-decoration-none">Giỏ hàng</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h6 class="fw-bold text-uppercase mb-3">DỊCH VỤ</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-1"><a href="#" class="text-white text-decoration-none">Đặt hàng online</a></li>
+                        <li class="mb-1"><a href="#" class="text-white text-decoration-none">Thanh toán & In Bill</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h6 class="fw-bold text-uppercase mb-3">KẾT NỐI VỚI CHÚNG TÔI</h6>
+                    <div class="d-flex gap-3 fs-5">
+                        <i class="bi bi-globe"></i>
+                        <i class="bi bi-facebook"></i>
+                        <i class="bi bi-instagram"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center small py-2 mt-3" style="background-color: #006b35;">
+            © 2026 Trà Sữa MON | Website bán trà sữa ASP.NET MVC
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
