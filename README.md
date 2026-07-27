@@ -2,63 +2,59 @@
 
 ## Thông tin sinh viên
 
-- Họ và tên: Phạm Hoàng Phú
-- MSSV: 170125001
+- Họ và tên: Trương Thị Ca Em      
+- MSSV: 170125051
 - Lớp: DK25TTC1
-- Email: phuph011195@tvu-onschool.edu.vn
-- SĐT: 0879492739
-- Repository: ASPNET-DK25TTC1-PHAMHOANGPHU-TRASUA
+- Email: emttc110386@tvu-onschool.edu.vn
+- SĐT: 0947366177
+- Repository: ASPNET-DK25TTC1-TRUONTHICAEM-BANGIAY
 
 ## Mô tả đề tài
 
 Repository dùng để quản lý đồ án ASP.NET.
 
-## Tiến độ
+TUẦN 1: Khởi Tạo Dự Án & Thiết Kế Cơ Sở Dữ Liệu
+Khởi tạo dự án: Tạo Solution BangiayCAEM trên ASP.NET Core MVC.
 
-### Tuần 1 (29/06/2026)
-- Tạo GitHub Repository.
-- Tạo cấu trúc thư mục theo yêu cầu.
-- Hoàn thành README.md.
-- Push project lên GitHub.
+Thiết kế Database: Tạo bảng dữ liệu Product (Sản phẩm), Category (Danh mục) và CartItem (Giỏ hàng).
 
-### Tuần 2 (05/07/2026)
-* Hoàn thành thiết kế Cơ sở dữ liệu (DbContext, Migrations).
-* Sinh code tự động (Scaffolding) thành công chức năng CRUD Quản lý Danh mục và Sản phẩm Trà sữa.
-* Sửa các lỗi biên dịch, cấu hình và đồng bộ code lên GitHub thành công.
+Xây dựng Giao diện mẫu (Layout): Tích hợp Bootstrap, thiết kế Navbar, Header, Footer theo tông màu chủ đạo của thương hiệu CAEM.
 
-### Tuần 3 (12/07/2026 - 19/07/2026)
+🔹 TUẦN 2: Quản Lý Sản Phẩm (CRUD Products) & Tải Ảnh
+Trang danh sách sản phẩm: Dựng giao diện thẻ sản phẩm (Product Card) hiển thị tên, giá và hình ảnh tại Trang chủ.
 
-* **Xây dựng chức năng Giỏ hàng (Cart) và Quản lý đơn hàng:**
-    * Phát triển `CartController` và thiết kế giao diện danh sách giỏ hàng (`Cart/Index.cshtml`).
-    * Sử dụng `Session` hoặc `Cookie` để lưu trữ trạng thái các món trà sữa được người dùng chọn thêm vào giỏ.
-    * Tích hợp tính năng cập nhật số lượng, tính tổng tiền đơn hàng động và xóa món khỏi giỏ.
-* **Hoàn thiện các trang bổ trợ giao diện người dùng (Front-end):**
-    * Xây dựng trang Chi tiết sản phẩm (`Home/Details.cshtml`) hiển thị đầy đủ thông tin mô tả chi tiết, giá bán và hình ảnh lớn của từng loại trà sữa.
-    * Liên kết sự kiện cho hệ thống nút bấm "Đặt hàng ngay" trên Banner và nút "Thêm món" tại các thẻ sản phẩm ở Trang chủ.
-* Đồng bộ phiên bản và đẩy toàn bộ mã nguồn chức năng giỏ hàng lên hệ thống GitHub.
-## Tuần 4 (19/07/2026 - 26/07/2026)
+Thêm sản phẩm mới (Create): Tích hợp cửa sổ Popup (Modal) cho phép người quản trị nhập thông tin và thêm mẫu giày mới.
 
-- Hoàn thiện và kiểm tra toàn bộ chức năng website bán trà sữa MON.
-  - Kiểm tra chức năng quản lý danh mục và sản phẩm.
-  - Kiểm tra hiển thị sản phẩm và thông tin chi tiết sản phẩm.
-  - Kiểm tra chức năng giỏ hàng: thêm món, cập nhật số lượng, xóa sản phẩm.
+Chỉnh sửa & Xóa (Edit / Delete): Bổ sung nút bấm trực tiếp trên thẻ sản phẩm để sửa thông tin sai hoặc xóa mẫu giày lỗi.
 
-- Hoàn thiện giao diện website.
-  - Chỉnh sửa giao diện trang chủ.
-  - Hoàn thiện Banner, sản phẩm nổi bật và Footer.
-  - Cải thiện bố cục và giao diện người dùng.
+Tối ưu hình ảnh: Cấu hình đường dẫn ảnh tĩnh /images/ lưu trong wwwroot giúp ảnh hiển thị ổn định, không bị lỗi link.
 
-- Kiểm thử và sửa lỗi hệ thống.
-  - Kiểm tra điều hướng giữa các trang.
-  - Sửa lỗi giao diện và tối ưu mã nguồn.
-  - Chụp màn hình các chức năng chính của website.
-  - Bổ sung sơ đồ Use Case, mô hình hệ thống.
-  - Viết nội dung các chương báo cáo:
-  - Chương 3: Phân tích và thiết kế hệ thống.
-  - Chương 4: Cài đặt và triển khai.
-  - Chương 5: Kết quả và đánh giá.
+🔹 TUẦN 3: Xây Dựng Giỏ Hàng (CartService) & Sửa Lỗi Hệ Thống
+Sửa lỗi ép kiểu Model Giỏ hàng: Khắc phục triệt để lỗi xung đột giữa CartItem và Product trên View Giỏ hàng.
 
-- Hoàn thiện báo cáo đồ án.
-  - Bổ sung sơ đồ Use Case.
-  - Chụp màn hình chức năng website.
-  - Hoàn thiện nội dung báo cáo.
+Tính năng giỏ hàng:
+
+Thêm sản phẩm vào giỏ (AddToCart).
+
+Tự động tính tổng tiền đơn hàng và thành tiền từng món.
+
+Xóa từng món (RemoveFromCart) hoặc xóa toàn bộ giỏ hàng (ClearCart).
+
+Giao diện thanh toán: Tạo bảng Tóm tắt đơn hàng và nút Thanh toán tiện lợi.
+
+🔹 TUẦN 4: Tối Ưu Hóa, Dọn Dẹp Code & Đóng Gói Dự Án
+Dọn dẹp bộ nhớ: Xóa hoàn toàn các file cache/build cũ không sử dụng (các file rác TrasuaMON...) giúp thư mục project gọn nhẹ.
+
+Kiểm thử hệ thống (Testing): Kiểm tra lại toàn bộ luồng mua hàng từ Trang chủ ➔ Giỏ hàng ➔ Đặt hàng.
+
+Tối ưu hiển thị (Responsive): Đảm bảo giao diện website CAEM hiển thị đẹp mắt trên cả máy tính và điện thoại.
+
+Nghiệm thu dự án: Đóng gói source code và chuẩn bị báo cáo hoàn thành.
+
+📩 Mọi thông tin chi tiết hoặc hỗ trợ kỹ thuật xin vui lòng liên hệ:
+
+Bộ phận Kỹ thuật CAEM Store
+
+Email: support@caem.vn / contact@caem.com
+
+Website: BangiayCAEM
