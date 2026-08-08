@@ -42,8 +42,8 @@ Xóa từng món (RemoveFromCart) hoặc xóa toàn bộ giỏ hàng (ClearCart)
 
 Giao diện thanh toán: Tạo bảng Tóm tắt đơn hàng và nút Thanh toán tiện lợi.
 
-🔹 TUẦN 4: Tối Ưu Hóa, Dọn Dẹp Code & Đóng Gói Dự Án
-Dọn dẹp bộ nhớ: Xóa hoàn toàn các file cache/build cũ không sử dụng (các file rác TrasuaMON...) giúp thư mục project gọn nhẹ.
+🔹 TUẦN 4: Tối Ưu Hóa, Dọn Dẹp Code & Đóng Gói Dự Á
+Dọn dẹp bộ nhớ: Xóa hoàn toàn các file cache/build cũ không sử dụngN giúp thư mục project gọn nhẹ.
 
 Kiểm thử hệ thống (Testing): Kiểm tra lại toàn bộ luồng mua hàng từ Trang chủ ➔ Giỏ hàng ➔ Đặt hàng.
 
