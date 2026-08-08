@@ -7,3 +7,4 @@ namespace BangiayCAEM.Models
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }
+
